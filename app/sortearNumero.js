@@ -1,4 +1,7 @@
-const numeroSecreto = gerarNumeroAleatorio
+const numeroSecreto = gerarNumeroAleatorio()
+
 function gerarNumeroAleatorio(){
-    return parseInt(Math.random()*100)
+    return parseInt(Math.random() * 100)
 }   
+
+console.log('Numero secreto:',numeroSecreto)
