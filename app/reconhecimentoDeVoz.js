@@ -2,7 +2,7 @@ const elementoChute = document.getElementById('chute')
 
 window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 
-const recognition = new SpeechRecognition();
+const recognition = new webkitSpeechRecognition();
 recognition.lang = 'pt-Br'
 recognition.start()
 
