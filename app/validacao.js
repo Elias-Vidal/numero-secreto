@@ -2,7 +2,7 @@ function VerificaSeOChutePossuiUmValorValido(chute){
     const numero = +chute
 
     if(chuteForInvalido(numero)){
-        console.log('Valor invalido')
+       elementoChute.innerHTML +='<div> Valor Invalido</div>'
     }
     if (numeroForMaiorOuMenorQueOValorPermitido(numero)){
     console.log(`valor invalido:numero secreto precisa estar 
