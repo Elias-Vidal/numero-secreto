@@ -3,14 +3,32 @@ function VerificaSeOChutePossuiUmValorValido(chute){
 
     if(chuteForInvalido(numero)){
        elementoChute.innerHTML +='<div> Valor Invalido</div>'
+       return
     }
     if (numeroForMaiorOuMenorQueOValorPermitido(numero)){
-    console.log(`valor invalido:numero secreto precisa estar 
-    entre ${menorValor} e ${maiorValor}`)
-
+    elementoChute.innerHTML += `
+    <div>Valor Invalido: Fale um numero entre ${menorValor} e
+    ${maiorValor}</div>`
+    return
     }
     
-}
+    if (numero === numeroSecreto){
+        document.body.innerHTML = `
+        <h2>Voce Acertou!</h2>
+        <h3>O numero secreto era ${numeroSecreto}
+        `
+    }else if(numero>numeroSecreto){
+        elementoChute.innerHTML +=`
+        <div>O número secreto é menor <i class="fa-solid fa-down-long"></i></div>
+        `
+    }else {
+        
+    }
+
+    }
+
+
+
 
 function chuteForInvalido(numero) {
     return Number.isNaN(numero)
