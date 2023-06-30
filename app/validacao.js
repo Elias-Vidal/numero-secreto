@@ -1,41 +1,24 @@
-function VerificaSeOChutePossuiUmValorValido(chute){
-    const numero = +chute
+const elementoChute = document.getElementById('chute')
 
-    if(chuteForInvalido(numero)){
-       elementoChute.innerHTML +='<div> Valor Invalido</div>'
-       return
-    }
-    if (numeroForMaiorOuMenorQueOValorPermitido(numero)){
-    elementoChute.innerHTML += `
-    <div>Valor Invalido: Fale um numero entre ${menorValor} e
-    ${maiorValor}</div>`
-    return
-    }
-    
-    if (numero === numeroSecreto){
-        document.body.innerHTML = `
-        <h2>Voce Acertou!</h2>
-        <h3>O numero secreto era ${numeroSecreto}</h3>
-        <button id="jogar-novamente" class="btn-jogar">Jogar Novamente</button>
-        `
-    }else if(numero>numeroSecreto){
-        elementoChute.innerHTML +=`
-        <div>O número secreto é menor <i class="fa-solid fa-down-long"></i></div>
-        `
-    }else {
-        elementoChute.innerHTML +=`
-        <div>O número secreto é maior <i class="fa-solid fa-up-long"></i></div>
-        `
-    }
+window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 
-    }
+const recognition = new SpeechRecognition();
+recognition.lang = 'pt-Br'
+recognition.start()
 
+recognition.addEventListener('result', onSpeak)
 
-
-
-function chuteForInvalido(numero) {
-    return Number.isNaN(numero)
+function onSpeak(e) {
+    chute = e.results[0][0].transcript
+    exibeChuteNaTela(chute)
+    verificaSeOChutePossuiUmValorValido(chute)
 }
-function numeroForMaiorOuMenorQueOValorPermitido(numero){
-    return numero > maiorValor || numero < menorValor
+
+function exibeChuteNaTela(chute) {
+    elementoChute.innerHTML = `
+        <div>Você disse</div>
+        <span class="box">${chute}</span>
+     `
 }
+
+recognition.addEventListener('end', () => recognition.start())
